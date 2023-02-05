@@ -1,0 +1,7 @@
+DeviceTvmSoftwareVulnerabilities
+| project DeviceName ,OSPlatform, VulnerabilitySeverityLevel
+| sort by VulnerabilitySeverityLevel asc
+| evaluate pivot(VulnerabilitySeverityLevel)
+| project DeviceName, OSPlatform, Critical, High, Medium, Low
+| sort by Critical, High, Medium, Low
+| where OSPlatform !contains "Windows10" and OSPlatform !contains "macOS"
