@@ -1,0 +1,13 @@
+
+
+DeviceTvmSoftwareVulnerabilities
+
+| project DeviceName , VulnerabilitySeverityLevel
+
+| sort by VulnerabilitySeverityLevel asc
+
+| evaluate pivot(VulnerabilitySeverityLevel)
+
+| project DeviceName , Critical, High, Medium, Low
+
+| sort by Critical, High, Medium, Low
