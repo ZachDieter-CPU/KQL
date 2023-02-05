@@ -1,0 +1,35 @@
+DeviceLogonEvents
+
+| where IsLocalAdmin == 1
+
+| where AccountName != "azureadsync"
+
+| where AccountName !contains "xu"
+
+| where AccountName !contains "backup"
+
+| where AccountName !contains "sa_"
+
+| where AccountName !contains "sql"
+
+| summarize count() by AccountName, DeviceName
+
+| sort by DeviceName asc
+
+ 
+
+DeviceLogonEvents
+
+| where IsLocalAdmin == 1
+
+| where AccountName != "azureadsync"
+
+| where AccountName !contains "xu"
+
+| where AccountName !contains "backup"
+
+| where AccountName !contains "sa_"
+
+| where AccountName !contains "sql"
+
+| summarize devicename=make_set(AccountName) by DeviceName
