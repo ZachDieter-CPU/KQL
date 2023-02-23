@@ -1,69 +1,33 @@
 DeviceEvents
-
 //Set between two dayes
-
 | where TimeGenerated between (datetime(2023-2-5)..datetime(2023-2-11))
-
 | extend hour = datetime_part("hour", TimeGenerated)
-
 //Set between 5-6 PM
-
 | where hour between (17 .. 17)
-
 //Device name
-
 | where DeviceName == ""
-
 //Was getting a login without account name
-
 | where AccountName != ""
-
 //| summarize LoginTime=make_set(TimeGenerated) by AccountName
-
- 
-
- 
-
- 
 
 DeviceInfo
-
 //Set between two dayes
-
 | where TimeGenerated between (datetime(2023-2-5)..datetime(2023-2-11))
-
 | extend hour = datetime_part("hour", TimeGenerated)
-
 //Set between 5-6 PM
-
 | where hour between (17 .. 17)
-
 //Device name
-
 | where DeviceName == ""
-
 //| summarize LoginTime=make_set(TimeGenerated) by AccountName
 
- 
-
- 
-
 DeviceNetworkEvents
-
 //Set between two dayes
-
 | where TimeGenerated between (datetime(2023-2-5)..datetime(2023-2-11))
-
 | extend hour = datetime_part("hour", TimeGenerated)
-
 //Set between 5-6 PM
-
 | where hour between (17 .. 17)
-
 //Device name
-
 | where DeviceName == ""
-
 //| summarize LoginTime=make_set(TimeGenerated) by AccountName
 
  
@@ -71,31 +35,17 @@ DeviceNetworkEvents
  
 
 CloudAppEvents
-
 | where TimeGenerated between (datetime(2023-2-5)..datetime(2023-2-11))
-
 | extend hour = datetime_part("hour", TimeGenerated)
-
 //Set between 5-6 PM
-
 | where hour between (17 .. 18)
-
 //| where AccountDisplayName == "”
-
 //| extend computername= parse_json(RawEventData).DeviceName
-
 //| extend user= parse_json(ActivityObjects).Name
-
 //| extend computername = raw.DeviceName
-
 //| where computername == ""
-
 | extend Ipaddress=parse_json(RawEventData).ClientIP
-
 | extend FilePath=parse_json(RawEventData).ObjectId
-
 | where FilePath !contains "Microsoft.Windows.Search" or FilePath !contains "AppData"
-
 | where Ipaddress == ""
-
 | project TimeGenerated, AccountDisplayName, ActionType, FilePath, parse_json(RawEventData).Application,RawEventData
