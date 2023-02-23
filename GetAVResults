@@ -1,17 +1,8 @@
 DeviceEvents
-
 | where ActionType == "AntivirusDetection"
-
 | extend event = parse_json(AdditionalFields)
-
 | extend Threat = event.ThreatName
-
 | extend WasRemediated = event.WasRemediated
-
 | extend Action = event.Action
-
 | extend ReportSource = event.ReportSource
-
 | project Timestamp, DeviceName, event, Threat, WasRemediated, Action, ReportSource, FileName
-
- 
